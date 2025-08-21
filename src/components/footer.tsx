@@ -1,5 +1,33 @@
 import Link from 'next/link';
-import { GraduationCap } from 'lucide-react';
+import { GraduationCap, Instagram, Linkedin, Github, Codepen, Mail } from 'lucide-react';
+
+const socialLinks = [
+    {
+      icon: <Instagram className="h-5 w-5" />,
+      href: "https://www.instagram.com/girish_lade_/",
+      label: "Instagram",
+    },
+    {
+      icon: <Linkedin className="h-5 w-5" />,
+      href: "https://www.linkedin.com/in/girish-lade-075bba201/",
+      label: "LinkedIn",
+    },
+    {
+      icon: <Github className="h-5 w-5" />,
+      href: "https://github.com/girishlade111",
+      label: "GitHub",
+    },
+    {
+      icon: <Codepen className="h-5 w-5" />,
+      href: "https://codepen.io/Girish-Lade-the-looper",
+      label: "Codepen",
+    },
+    {
+      icon: <Mail className="h-5 w-5" />,
+      href: "mailto:girishlade111@gmail.com",
+      label: "Email",
+    },
+]
 
 export default function Footer() {
   return (
@@ -16,6 +44,24 @@ export default function Footer() {
             <Link href="#" className="hover:text-primary transition-colors">Contact Us</Link>
           </nav>
         </div>
+
+        <div className="flex justify-center mt-8">
+            <div className="flex items-center gap-6">
+                {socialLinks.map((link) => (
+                    <a 
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={link.label}
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                        {link.icon}
+                    </a>
+                ))}
+            </div>
+        </div>
+
         <div className="mt-8 text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Campus Compass University. All rights reserved.</p>
           <p className="mt-1">Innovate. Lead. Succeed.</p>
