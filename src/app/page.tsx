@@ -57,7 +57,7 @@ export default function Home() {
             {features.map((feature) => (
               <Link href={feature.href} key={feature.title} className="group h-full">
                 <GlowCard 
-                  className="h-full flex flex-col"
+                  className="h-full flex flex-col transition-transform duration-300 group-hover:scale-105"
                   glowColor={feature.glowColor} 
                   customSize={true}
                 >
