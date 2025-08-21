@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { GraduationCap, Menu, User } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { ThemeToggle } from './theme-toggle';
 
 const navLinks = [
   { href: '/map', label: 'Map' },
@@ -45,6 +46,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
+          <ThemeToggle />
           <Button asChild>
             <Link href="/login">
               <User className="mr-2 h-4 w-4" /> Student Portal
