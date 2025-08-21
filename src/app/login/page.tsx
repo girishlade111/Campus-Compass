@@ -1,46 +1,68 @@
+// src/app/login/page.tsx
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { SignInPage, type Testimonial } from "@/components/ui/sign-in";
+
+const sampleTestimonials: Testimonial[] = [
+  {
+    avatarSrc: "https://placehold.co/100x100.png",
+    name: "Sarah Chen",
+    handle: "@sarahdigital",
+    text: "Amazing platform! The user experience is seamless and the features are exactly what I needed.",
+    aiHint: "student portrait",
+  },
+  {
+    avatarSrc: "https://placehold.co/100x100.png",
+    name: "Marcus Johnson",
+    handle: "@marcustech",
+    text: "This service has transformed how I work. Clean design, powerful features, and excellent support.",
+    aiHint: "student portrait",
+  },
+  {
+    avatarSrc: "https://placehold.co/100x100.png",
+    name: "David Martinez",
+    handle: "@davidcreates",
+    text: "I've tried many platforms, but this one stands out. Intuitive, reliable, and genuinely helpful for productivity.",
+    aiHint: "student portrait",
+  },
+];
+
 
 export default function LoginPage() {
   const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     // In a real app, you'd have authentication logic here.
     // For this demo, we'll just redirect to the portal.
     router.push('/portal');
   };
 
+  const handleGoogleSignIn = () => {
+    // Handle Google sign in
+    router.push('/portal');
+  };
+
+  const handleResetPassword = () => {
+    // Handle reset password
+  }
+
+  const handleCreateAccount = () => {
+    // Handle create account
+  }
+
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-14rem)] bg-primary/5 py-12">
-      <Card className="w-full max-w-sm shadow-xl">
-        <CardHeader className="text-center">
-          <CardTitle className="font-headline text-2xl">Student Portal Login</CardTitle>
-          <CardDescription>Enter your credentials to access your dashboard.</CardDescription>
-        </CardHeader>
-        <form onSubmit={handleLogin}>
-            <CardContent className="space-y-4">
-            <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="student@campuscompass.edu" required />
-            </div>
-            <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" required />
-            </div>
-            </CardContent>
-            <CardFooter>
-            <Button type="submit" className="w-full">
-                Sign In
-            </Button>
-            </CardFooter>
-        </form>
-      </Card>
+    <div className="bg-background text-foreground">
+      <SignInPage
+        heroImageSrc="https://placehold.co/1080x1920.png"
+        heroImageAiHint="university library"
+        testimonials={sampleTestimonials}
+        onSignIn={handleSignIn}
+        onGoogleSignIn={handleGoogleSignIn}
+        onResetPassword={handleResetPassword}
+        onCreateAccount={handleCreateAccount}
+      />
     </div>
   );
 }
