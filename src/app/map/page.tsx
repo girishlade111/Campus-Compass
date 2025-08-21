@@ -1,8 +1,11 @@
-import Image from 'next/image';
+// src/app/map/page.tsx
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { MapPin, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Globe } from '@/components/ui/globe';
 
 export default function MapPage() {
   return (
@@ -14,19 +17,9 @@ export default function MapPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <Card className="overflow-hidden shadow-lg">
-            <div className="relative w-full aspect-video">
-              <Image
-                src="https://placehold.co/1200x800.png"
-                alt="Campus Map"
-                layout="fill"
-                objectFit="cover"
-                data-ai-hint="university map"
-              />
-               <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                 <p className="text-white text-2xl font-bold bg-black/50 p-4 rounded-md">Interactive Map Coming Soon</p>
-               </div>
-            </div>
+          <Card className="overflow-hidden shadow-lg h-[500px] flex items-center justify-center relative">
+            <Globe />
+            <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.2),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.2),rgba(0,0,0,0))]" />
           </Card>
         </div>
         
