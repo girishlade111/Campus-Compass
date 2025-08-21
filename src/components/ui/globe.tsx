@@ -1,10 +1,10 @@
 "use client"
 
-import createGlobe, { COBEOptions } from "cobe"
+import createGlobe, { type COBEOptions } from "cobe"
 import { useCallback, useEffect, useRef, useState } from "react"
+import { useTheme } from "next-themes"
 
 import { cn } from "@/lib/utils"
-import { useTheme } from "next-themes"
 
 const GLOBE_CONFIG: COBEOptions = {
   width: 800,
@@ -41,7 +41,7 @@ export function Globe({
   className?: string
   config?: COBEOptions
 }) {
-  const { theme } = useTheme();
+  const { theme } = useTheme()
   let phi = 0
   let width = 0
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -70,9 +70,9 @@ export function Globe({
       state.phi = phi + r
       state.width = width * 2
       state.height = width * 2
-      state.dark = theme === 'dark' ? 1 : 0;
+      state.dark = theme === "dark" ? 1 : 0
     },
-    [r, theme],
+    [r, theme]
   )
 
   const onResize = () => {
@@ -93,29 +93,30 @@ export function Globe({
     })
 
     setTimeout(() => {
-        if(canvasRef.current) {
-            canvasRef.current.style.opacity = "1"
-        }
+      if (canvasRef.current) {
+        canvasRef.current.style.opacity = "1"
+      }
     })
-    return () => globe.destroy()
-  }, [onRender])
+    return () => {
+      globe.destroy()
+      window.removeEventListener("resize", onResize)
+    }
+  }, [onRender, config])
 
   return (
     <div
       className={cn(
         "absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]",
-        className,
+        className
       )}
     >
       <canvas
         className={cn(
-          "h-full w-full opacity-0 transition-opacity duration-500 [contain:layout_paint_size]",
+          "h-full w-full opacity-0 transition-opacity duration-500 [contain:layout_paint_size]"
         )}
         ref={canvasRef}
         onPointerDown={(e) =>
-          updatePointerInteraction(
-            e.clientX - pointerInteractionMovement.current,
-          )
+          updatePointerInteraction(e.clientX - pointerInteractionMovement.current)
         }
         onPointerUp={() => updatePointerInteraction(null)}
         onPointerOut={() => updatePointerInteraction(null)}
