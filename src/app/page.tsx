@@ -1,9 +1,10 @@
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Map, Compass, Calendar, Bot } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HeroGeometric } from '@/components/ui/shape-landing-hero';
+import { GlowCard } from '@/components/ui/spotlight-card';
+import { CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
 const features = [
   {
@@ -11,24 +12,28 @@ const features = [
     description: 'Find your way around campus with ease.',
     icon: <Map className="h-8 w-8 text-primary" />,
     href: '/map',
+    glowColor: 'blue' as 'blue' | 'purple',
   },
   {
     title: 'Virtual Tour',
     description: 'Explore our beautiful campus from anywhere.',
     icon: <Compass className="h-8 w-8 text-primary" />,
     href: '/virtual-tour',
+    glowColor: 'purple' as 'blue' | 'purple',
   },
   {
     title: 'Event Calendar',
     description: 'Stay up-to-date with the latest events.',
     icon: <Calendar className="h-8 w-8 text-primary" />,
     href: '/events',
+    glowColor: 'blue' as 'blue' | 'purple',
   },
   {
     title: 'Smart Assistant',
     description: 'Get instant answers to your questions.',
     icon: <Bot className="h-8 w-8 text-primary" />,
     href: '/ask',
+    glowColor: 'purple' as 'blue' | 'purple',
   },
 ];
 
@@ -50,18 +55,22 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature) => (
-              <Link href={feature.href} key={feature.title} className="group">
-                <Card className="h-full transform transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+              <Link href={feature.href} key={feature.title} className="group h-full">
+                <GlowCard 
+                  className="h-full flex flex-col"
+                  glowColor={feature.glowColor} 
+                  customSize={true}
+                >
                   <CardHeader>
                     <div className="flex items-center gap-4">
                       {feature.icon}
-                      <CardTitle className="font-headline">{feature.title}</CardTitle>
+                      <CardTitle className="font-headline text-foreground">{feature.title}</CardTitle>
                     </div>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex-grow">
                     <p className="text-muted-foreground">{feature.description}</p>
                   </CardContent>
-                </Card>
+                </GlowCard>
               </Link>
             ))}
           </div>
