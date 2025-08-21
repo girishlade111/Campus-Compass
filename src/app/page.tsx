@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Map, Compass, Calendar, Bot, GraduationCap } from 'lucide-react';
+import { Map, Compass, Calendar, Bot } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { HeroGeometric } from '@/components/ui/shape-landing-hero';
 
 const features = [
   {
@@ -35,27 +36,11 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="bg-primary/10 py-20 md:py-32">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center mb-4">
-            <GraduationCap className="h-12 w-12 text-primary" />
-            <h1 className="ml-4 text-4xl md:text-6xl font-bold font-headline text-gray-800">
-              Campus Compass
-            </h1>
-          </div>
-          <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Innovate. Lead. Succeed. Your journey starts here.
-          </p>
-          <div className="mt-8 flex justify-center gap-4">
-            <Button asChild size="lg">
-              <Link href="/virtual-tour">Take a Virtual Tour</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link href="/ask">Ask Our AI Assistant</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <HeroGeometric 
+        badge="Campus Compass"
+        title1="Innovate. Lead. Succeed."
+        title2="Your Journey Starts Here."
+      />
 
       {/* Features Section */}
       <section className="py-16 md:py-24 bg-background">
