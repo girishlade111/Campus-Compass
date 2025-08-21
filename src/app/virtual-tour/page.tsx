@@ -72,9 +72,9 @@ export default function VirtualTourPage() {
           >
             <CarouselContent>
               {tourStops.map((stop, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 group">
                   <div className="p-1">
-                    <Card className="overflow-hidden">
+                    <Card className="overflow-hidden transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
                       <CardContent className="flex flex-col aspect-square items-start justify-end p-0">
                         <div className="relative w-full h-full">
                            <Image
